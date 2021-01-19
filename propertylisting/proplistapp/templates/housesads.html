@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Address</th>
+                <th scope="col">Rooms</th>
+                <th scope="col">Bathrooms</th>
+                <th scope="col">House Images</th>
+              </tr>
+        </thead>
+        <tbody>
+            {% for houseAd in houses %}
+            <tr>
+                <td>{{houseAd.address}}</td>
+                <td>{{houseAd.rooms}}</td>
+                <td>{{houseAd.bathrooms}}</td>
+                <td><img src="{{houseAd.house_images}}" width="100px"/></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
