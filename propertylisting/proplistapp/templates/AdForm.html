@@ -1,0 +1,32 @@
+{% extends 'index.html' %}
+{% block AdForm %}
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="col-md-8">
+            <div class="col-md-12 p-2">
+                <div class="row">
+                    <label class="form-label">Address</label>
+                    {{AdData.address}}
+                </div>
+                <div class="row">
+                    <label class="form-label">Rooms</label>
+                    {{AdData.rooms}}
+                </div>
+                <div class="row">
+                    <label class="form-label">Bathrooms</label>
+                    {{AdData.bathrooms}}
+                </div>
+                <div class="row">
+                    <label class="form-label">House Images</label>
+                    {{AdData.house_images}}
+                </div>
+                <br>
+                <div class="row">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

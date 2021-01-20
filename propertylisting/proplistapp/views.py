@@ -10,7 +10,7 @@ def index(request):
         return redirect('showAds') 
     else:    
         form = PostAdForm()
-        return render(request,"index.html",{'postAdData': form})
+        return render(request,"AdForm.html",{'AdData': form})
 
 def showAds(request):
     if request.method == 'GET': 
