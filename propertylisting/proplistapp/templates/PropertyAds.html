@@ -6,9 +6,9 @@
             {% for houseAd in houses %}
                 <div class="col-md-3 border border-light rounded-right" id="houseDiv">
                     <img src="{{houseAd.house_images.url}}" class="rounded" width="100%" height="150px"/>
-                    <h4><img src="{% static 'img/map.svg' %}" alt="Bedrooms" width="24"> {{houseAd.address}}</h4>
-                    <h6><img src="{% static 'img/bed.svg' %}" alt="Bedrooms" width="24"> {{houseAd.rooms}}</h6>
-                    <h6><img src="{% static 'img/bath.svg' %}" alt="Bathrooms" width="24"> {{houseAd.bathrooms}}</h6>
+                    <h4><img src="{% static 'img/map.svg' %}" alt="Bedrooms" width="20"> {{houseAd.address}}</h4>
+                    <h5 class="border border-light rounded"><img class="float-start p-1" src="{% static 'img/bed.svg' %}" alt="Bedrooms" width="24"> {{houseAd.rooms}}</h5>
+                    <h5 class="border border-light rounded"><img class="float-start p-1" src="{% static 'img/bath.svg' %}" alt="Bathrooms" width="24"> {{houseAd.bathrooms}}</h5>
                 </div>
             {% endfor %}
         </div>

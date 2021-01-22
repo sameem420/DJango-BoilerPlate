@@ -2,8 +2,8 @@
     text-align: center;
     padding: 5px;
     margin: 5px;
-    background: rgba( 196, 196, 196, 0.50 );
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    background: rgba(39, 38, 38, 0.7);
+    box-shadow: 0 8px 32px 0 rgba(65, 70, 143, 0.37);
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
 }
