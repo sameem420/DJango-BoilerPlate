@@ -23,10 +23,10 @@ from proplistapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="index"),
-    path("register/", views.register, name="register"),
-    path('login/', views.login, name="login"),
-    path('logout/', views.logout, name="logout"),
-    path('propertyads',views.propertyAds,name="propertyAds")
+    path("register/", views.registerUser, name="registerUser"),
+    path('login/', views.loginUser, name="loginUser"),
+    path('logout/', views.logoutUser, name="logout"),
+    path('propertyads/',views.propertyAds,name="propertyAds")
 ]
 
 if settings.DEBUG: 

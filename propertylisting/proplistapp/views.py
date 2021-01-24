@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from .forms import PostAdForm
 from .forms import RegisterForm
 from proplistapp.models import PostAd
+
 # Create your views here.
 def index(request):
     if request.method == "POST":
@@ -20,27 +21,73 @@ def propertyAds(request):
         Houses = PostAd.objects.all()
         return render(request, 'PropertyAds.html', {'houses' : Houses})
 
-def register(request):
-    add_form = RegisterForm()
-#    form = UserCreationForm()
+def registerUser(request):
+    # if this is a POST request we need to process the form data
+    template = 'register.html'
+   
     if request.method == 'POST':
-        if add_form.is_valid():
-            add_form.save()
-            return redirect('login')
-    context = {'form':add_form}
-    return render(request, 'register.html', context)
+        # create a form instance and populate it with data from the request:
+        form = RegisterForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            if User.objects.filter(username=form.cleaned_data['username']).exists():
+                return render(request, template, {
+                    'form': form,
+                    'error_message': 'Username already exists.'
+                })
+            elif User.objects.filter(email=form.cleaned_data['email']).exists():
+                return render(request, template, {
+                    'form': form,
+                    'error_message': 'Email already exists.'
+                })
+            elif form.cleaned_data['password'] != form.cleaned_data['password_repeat']:
+                return render(request, template, {
+                    'form': form,
+                    'error_message': 'Passwords do not match.'
+                })
+            else:
+                # Create the user:
+                user = User.objects.create_user(
+                    form.cleaned_data['username'],
+                    form.cleaned_data['email'],
+                    form.cleaned_data['password']
+                )
+                user.first_name = form.cleaned_data['first_name']
+                user.last_name = form.cleaned_data['last_name']
+                user.phone_number = form.cleaned_data['phone_number']
+                user.save()
+               
+                # Login the user
+                login(request, user)
+               
+                # redirect to accounts page:
+                return redirect('index')
 
-def login(request):
+   # No post data availabe, let's just show the page.
+    else:
+        form = RegisterForm()
+
+    return render(request, template, {'form': form})
+
+def loginUser(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+        # Process the request if posted data are available
+        username = request.POST['username']
+        password = request.POST['password']
+        # Check username and password combination if correct
+        user = authenticate(username=username, password=password)
         if user is not None:
+            # Save session as cookie to login the user
             login(request, user)
-            return redirect("home")
-    context = {}
-    return render(request, 'login.html', context)    
+            # Success, now let's login the user.
+            return redirect('index')
+        else:
+            # Incorrect credentials, let's throw an error to the screen.
+            return render(request, 'login.html', {'error_message': 'Incorrect username and / or password.'})
+    else:
+        # No post data availabe, let's just show the page to the user.
+        return render(request, 'login.html')    
 
-def logout(request):
+def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('loginUser')
