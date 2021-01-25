@@ -24,13 +24,13 @@
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Remember password</label>
               </div>
-              <div class="m-auto text-center">
-                <button class="bt btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign in</button>
-                |
-                <a class="bt btn btn-lg btn-primary btn-block" href="{% url 'registerUser' %}">Register</a>
-              </div>
-              <hr class="my-4">
               <div class="text-center">
+                <button class="bt btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign in</button>
+                <h6 class="my-2">OR</h6>
+                <a class="bt btn btn-lg btn-primary btn-block text-uppercase" href="{% url 'registerUser' %}">Create an Account</a>
+              </div>
+              <hr class="hrstyle m-3">
+              <div class="m-auto text-center">
                 <a href="" class="btn btn-block">
                       <i class="fab fa-facebook"></i>
                     </a>
