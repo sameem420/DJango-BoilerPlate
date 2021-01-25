@@ -1,9 +1,0 @@
-#houseDiv {
-    text-align: center;
-    padding: 5px;
-    margin: 5px;
-    background: rgba(105, 103, 103, 0.7);
-    box-shadow: 0 8px 32px 0 rgba(65, 70, 143, 0.37);
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-}

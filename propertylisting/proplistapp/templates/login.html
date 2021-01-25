@@ -1,35 +1,53 @@
 {% extends "index.html" %}
 
 {% block loginPage %}
-    <div class="container">
-        <form action="{% url 'loginUser' %}" method="post">
-            {% csrf_token %}
-            <div class="col-md-4 col-md-offset-4  m-auto">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Login</div>
-                    <div class="panel-body">
-                        {% if error_message %}
-                            <p class="bg-danger p-d ml-b">{{ error_message }}</p>
-                        {% endif %}
-                        <div class="form-group clearfix">
-                            <label for="username" class="col-md-4 control-label">Username:</label>
-                            <div class="col-md-6">
-                                <input name="username" value="" type="text" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="form-group clearfix">
-                            <label for="password" class="col-md-4 control-label">Password:</label>
-                            <div class="col-md-6">
-                                <input name="password" type="password" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-md-offset-4">
-                            <input name="login" type="submit" value="Login" class="btn btn-success" /> &nbsp;
-                            or <a class="btn btn-primary" href="/register">Register</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 m-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            {% if error_message %}
+                <p class="bg-danger p-d ml-b rounded text-light text-center">{{ error_message }}</p>
+            {% endif %}
+            <h5 class="card-title text-center">Sign In</h5>
+            <form class="form-signin" action="{% url 'loginUser' %}" method="post">
+                {% csrf_token %}
+              <div class="form-label-group">    
+                <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" autofocus>
+                <label for="inputUsername"><i class="fa fa-user" aria-hidden="true"></i> Username</label>
+              </div>
+              <div class="form-label-group">
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
+                <label for="inputPassword"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+              </div>
+              <div class="custom-control custom-checkbox mb-3">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Remember password</label>
+              </div>
+              <div class="m-auto text-center">
+                <button class="bt btn btn-lg btn-success btn-block text-uppercase" type="submit">Sign in</button>
+                |
+                <a class="bt btn btn-lg btn-primary btn-block" href="{% url 'registerUser' %}">Register</a>
+              </div>
+              <hr class="my-4">
+              <div class="text-center">
+                <a href="" class="btn btn-block">
+                      <i class="fab fa-facebook"></i>
+                    </a>
+                  <a href="" class="btn btn-block">
+                      <i class="fab fa-github"></i>
+                    </a>
+                  <a href="" class="btn">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                  <a href="" class="btn">
+                      <i class="fab fa-google-plus-g"></i>
+                    </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 {% endblock %}
