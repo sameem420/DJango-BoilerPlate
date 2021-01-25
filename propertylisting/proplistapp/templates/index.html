@@ -5,11 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}" />
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <title>{% block title %}Property Listing - Find property for Sale{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <title>{% block title %}PropSeller - Find property for Sale{% endblock %}</title>
+    <style>
+        @font-face {
+            font-family: 'satisfy';
+            src: url("{% static 'fonts/Orbitron-Medium.ttf' %}") format("truetype");
+        }
+        @font-face {
+            font-family: 'nunito';
+            src: url("{% static 'fonts/MavenPro-Regular.ttf' %}") format("truetype");
+        }
+        body {
+            font-family: nunito, cursive;
+        }
+        #navbarTag {
+            font-family: satisfy, cursive;
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" id="navbarTag" href="{% url 'propertyAds' %}">PropSeller</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'loginUser' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'registerUser' %}">Register</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     {% block AdForm %}
     {% endblock %}
     {% block Ads %}
