@@ -25,7 +25,7 @@ urlpatterns = [
     path("", views.index, name="index"),
     path("register/", views.registerUser, name="registerUser"),
     path('login/', views.loginUser, name="loginUser"),
-    path('logout/', views.logoutUser, name="logout"),
+    path('logout/', views.logoutUser, name="logoutUser"),
     path('propertyads/',views.propertyAds,name="propertyAds")
 ]
 

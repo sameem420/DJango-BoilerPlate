@@ -14,7 +14,11 @@ def index(request):
         return redirect('propertyAds') 
     else:    
         form = PostAdForm()
-        return render(request,"PropertyAdForm.html",{'AdData': form})
+        if request.user.is_authenticated:
+                return render(request,"PropertyAdForm.html",{'AdData': form})
+        else:
+            return redirect('loginUser')
+        
 
 def propertyAds(request):
     if request.method == 'GET': 
@@ -80,7 +84,7 @@ def loginUser(request):
             # Save session as cookie to login the user
             login(request, user)
             # Success, now let's login the user.
-            return redirect('index')
+            return redirect('index')    
         else:
             # Incorrect credentials, let's throw an error to the screen.
             return render(request, 'login.html', {'error_message': 'Incorrect username and / or password.'})
