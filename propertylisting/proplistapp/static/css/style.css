@@ -194,3 +194,7 @@ hr.hrstyle:after {
   padding: 0 0.25em;
   background: white;
 }
+.dropdown-menu-right { 
+  right: 0; 
+  left: auto; 
+}
