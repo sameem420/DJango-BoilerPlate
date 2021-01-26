@@ -25,6 +25,11 @@ def propertyAds(request):
         Houses = PostAd.objects.all()
         return render(request, 'PropertyAds.html', {'houses' : Houses})
 
+
+def contactUs(request):
+    return render(request, 'contactus.html')
+
+
 def registerUser(request):
     # if this is a POST request we need to process the form data
     template = 'register.html'
