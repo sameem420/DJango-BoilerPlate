@@ -60,7 +60,12 @@
             <ul class="nav navbar-nav navbar-right">
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  {{ user.username }} <img src="{% static 'img/user.png' %}" width="28">
+                  {{ user.first_name }} 
+                  {% if request.user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" width="28">
+                    {% else %}
+                    <img src="{% static 'img/user.png' %}" width="28">
+                  {% endif %}
                   <!-- <i class="fas fa-user fa-fw"></i> -->
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right rounded bg-light" aria-labelledby="navbarDropdown">

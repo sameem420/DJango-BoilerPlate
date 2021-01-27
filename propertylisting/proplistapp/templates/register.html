@@ -10,7 +10,7 @@
                 <p class="bg-danger p-d ml-b rounded text-light text-center">{{ error_message }}</p>
             {% endif %}
             <h5 class="card-title text-center">Create an Account</h5>
-            <form class="form-signin" action="{% url 'loginUser' %}" method="post">
+            <form class="form-signin" action="{% url 'registerUser' %}" method="post">
                 {% csrf_token %}
               <div class="form-label-group">    
                 <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" autofocus>
@@ -42,7 +42,7 @@
               </div>
               <div class="text-center mt-2">
                 <div class="wrap-custom-file border border-secondary rounded mt-2">
-                  <input type="file" name="image1" id="image1" accept=".gif, .jpg, .png" />
+                  <input type="file" name="profile_picture" id="image1" accept=".gif, .jpg, .png" />
                   <label  for="image1">
                     <span>Select profile picture ...</span>
                     <i class="fa fa-plus-circle"></i>
@@ -55,27 +55,13 @@
                 <a class="bt btn btn-lg btn-primary btn-block text-uppercase" href="{% url 'loginUser' %}">Already have an Account | Login <i class="fas fa-sign-in-alt" aria-hidden="true"></i></a>
               </div>
               <hr class="hrstyle m-3">
-              <div class="m-auto text-center">
-                <a href="" class="btn btn-block">
-                      <i class="fab fa-facebook"></i>
-                    </a>
-                  <a href="" class="btn btn-block">
-                      <i class="fab fa-github"></i>
-                    </a>
-                  <a href="" class="btn">
-                      <i class="fab fa-twitter"></i>
-                    </a>
-                  <a href="" class="btn">
-                      <i class="fab fa-google-plus-g"></i>
-                    </a>
-              </div>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-    <div class="container">
+    <!-- <div class="container">
         <form action="{% url 'registerUser' %}" method="post">
             {% csrf_token %}
             <div class="col-md-8 col-md-offset-2">
@@ -135,5 +121,5 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div> -->
 {% endblock %}

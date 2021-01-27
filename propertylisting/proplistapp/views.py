@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .forms import PostAdForm
 from .forms import RegisterForm
-from proplistapp.models import PostAd
+from .models import PostAd
 
 # Create your views here.
 def index(request):
@@ -36,7 +36,7 @@ def registerUser(request):
    
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = RegisterForm(request.POST)
+        form = RegisterForm(request.POST, request.FILES)
         # check whether it's valid:
         if form.is_valid():
             if User.objects.filter(username=form.cleaned_data['username']).exists():
@@ -59,17 +59,22 @@ def registerUser(request):
                 user = User.objects.create_user(
                     form.cleaned_data['username'],
                     form.cleaned_data['email'],
-                    form.cleaned_data['password']
+                    form.cleaned_data['password'],
+                    # form.cleaned_data['first_name'],
+                    # form.cleaned_data['last_name'],
+                    # form.cleaned_data['phone_number'],
+                    # form.cleaned_data['profile_picture']
                 )
-                user.first_name = form.cleaned_data['first_name']
+                user.first_name = form.cleaned_data.get['first_name']
                 user.last_name = form.cleaned_data['last_name']
                 user.phone_number = form.cleaned_data['phone_number']
+                user.profile_picture = form.cleaned_data['profile_picture']
                 user.save()
                
                 # Login the user
                 login(request, user)
                
-                # redirect to accounts page:
+                # redirect to home page:
                 return redirect('index')
 
    # No post data availabe, let's just show the page.
