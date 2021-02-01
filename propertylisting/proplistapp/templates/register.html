@@ -10,8 +10,8 @@
                 <p class="bg-danger p-d ml-b rounded text-light text-center">{{ error_message }}</p>
             {% endif %}
             <h5 class="card-title text-center">Create an Account</h5>
-            <form class="form-signin" action="{% url 'registerUser' %}" method="post">
-                {% csrf_token %}
+            <form class="form-signin" action="{% url 'registerUser' %}" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
               <div class="form-label-group">    
                 <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" autofocus>
                 <label for="inputUsername"><i class="fa fa-user" aria-hidden="true"></i> Username</label>
