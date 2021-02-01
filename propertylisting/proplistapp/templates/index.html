@@ -63,21 +63,21 @@
                   {% if request.user.is_authenticated %}
                     Welcome {{ user.username }} {% else %} Welcome {{ 'Guest' }}!
                   {% endif %}   
-                  {% if request.user.userprofile.profile_picture.url %}
-                    <img src="{{ request.user.userprofile.profile_picture.url }}" width="28" height="28" style="border-radius: 28px;">
+                  {% if request.user.userprofile %}
+                      <img src="{{ request.user.userprofile.profile_picture.url }}" width="28" height="28" style="border-radius: 28px;">
                     {% else %}
-                    <img src="{% static 'img/user.png' %}" width="28">
+                      <img src="{% static 'img/user.png' %}" width="28">
                   {% endif %}
                   <!-- <i class="fas fa-user fa-fw"></i> -->
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right rounded bg-light" aria-labelledby="navbarDropdown">
                   {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'update_profile' %}">Profile Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
                     <li class="nav-item">
                       <a class="nav-link text-dark text-center fw-bolder" href="{% url 'logoutUser' %}">Logout <img src="{% static 'img/logout.svg' %}" width="28"></a>
                       <!-- <i class="fas fa-sign-out-alt"></i> -->
                     </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="{% url 'update_profile' %}">Edit Profile</a></li>
                   {% else %}
                       <p class="text-center text-danger fw-bolder">Not logged in.</p>
                   {% endif %}

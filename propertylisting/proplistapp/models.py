@@ -7,7 +7,7 @@ from django.dispatch import receiver
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=20, blank=True, default='')
-    profile_picture = models.ImageField(upload_to="profile_images/", blank=True)
+    profile_picture = models.ImageField(upload_to="profile_images/", blank=True, default='profile_images//default.png')
     city = models.CharField(max_length=100, default='', blank=True)
     country = models.CharField(max_length=100, default='', blank=True)
 
@@ -29,13 +29,3 @@ class PostAd(models.Model):
     bathrooms = models.IntegerField()
     house_images = models.ImageField(upload_to='images/')
     uploaded_at = models.DateTimeField(auto_now_add=True) 
-
-# class UserAccount(models.Model):
-#     username = models.CharField(max_length=50)
-#     email = models.EmailField(max_length=50)
-#     password = models.CharField(max_length=50)
-#     password_repeat = models.CharField(max_length=50)
-#     first_name = models.CharField(max_length=50)
-#     last_name = models.CharField(max_length=50)
-#     phone_number = models.CharField(max_length=50)
-#     profile_picture = models.ImageField()
