@@ -10,24 +10,24 @@ class UserProfileForm(forms.ModelForm):
             'phone_number': forms.NumberInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Enter Address here ...'
+                    'placeholder': 'Enter your mobile number ...'
                     }
                 ),
-            'profile_picture': forms.ClearableFileInput(
+            'profile_picture': forms.FileInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Enter Rooms here ...'
                     }
                 ),
             'city': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Enter Bathrooms here ...'
+                    'placeholder': 'Enter your city ...'
                     }
                 ),
             'country': forms.TextInput(
                 attrs={
-                    'class': 'form-control'
+                    'class': 'form-control',
+                    'placeholder': 'Enter your country ...'
                     }
                 ),        
             }
@@ -37,32 +37,37 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password', 'first_name', 'last_name']
-
-    # username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    # email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
-    # password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    # password_repeat = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
-    # first_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    # last_name = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
-    
-# class UserProfileForm(forms.ModelForm):
-#     class Meta:
-#         model = UserProfile
-        # 'username', 'email', 'password', 'password_repeat', 'first_name', 'last_name' ,
-        # fields = ['phone_number', 'profile_picture']
-        # widgets = {
-        #     'phone_number': forms.NumberInput(
-        #         attrs={
-        #             'class': 'form-control',
-        #             'placeholder': 'Enter phone number here ...'
-        #             }
-        #         ),
-        #     'profile_picture': forms.ClearableFileInput(
-        #         attrs={
-        #             'class': 'form-control'
-        #             }
-        #         ),        
-        #     }
+        widgets = {
+            'username': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter your username ...'
+                    }
+                ),
+            'email': forms.EmailInput(
+                attrs={
+                    'class': 'form-control',
+                    }
+                ),
+            'password': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'readonly': True
+                    }
+                ),
+            'first_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter your First Name ...'
+                    }
+                ),
+            'last_name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter your Last Name ...'
+                    }
+                ),             
+            }
 
 class PostAdForm(forms.ModelForm):
     class Meta: 

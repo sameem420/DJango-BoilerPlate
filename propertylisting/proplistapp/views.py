@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.forms.models import inlineformset_factory
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
 from django.contrib.auth.models import User
 from .models import PostAd, UserProfile
@@ -110,7 +112,7 @@ def logoutUser(request):
     return redirect('loginUser')
 
 @login_required
-def update_profile(request):
+def profile(request):
     if request.method == 'POST':
         user_form = UserForm(request.POST, request.FILES, instance=request.user)
         profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
@@ -118,14 +120,30 @@ def update_profile(request):
             user_form.save()
             profile_form.save()
             messages.success(request, _('Your profile was successfully updated!'))
-            return redirect('update_profile')
+            return redirect('profile')
         else:
             messages.error(request, _('Please correct the error below.'))
     else:
         user_form = UserForm(instance=request.user)
         profile_form = UserProfileForm(instance=request.user.userprofile)
-    return render(request, 'update_profile.html', {
+    return render(request, 'profile.html', {
         'user_form': user_form,
         'profile_form': profile_form
     })
     
+
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('change_password')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'change_password.html', {
+        'form': form
+    })    

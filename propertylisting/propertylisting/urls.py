@@ -28,7 +28,8 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logoutUser'),
     path('propertyads/',views.propertyAds,name='propertyAds'),
     path('contactus/',views.contactUs,name='contactUs'),
-    path('update_profile/',views.update_profile,name='update_profile')
+    path('profile/',views.profile,name='profile'),
+    path('change_password/', views.change_password, name='change_password')
 ]
 
 if settings.DEBUG: 

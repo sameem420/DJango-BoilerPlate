@@ -1,0 +1,48 @@
+{% extends 'index.html' %}
+{% block profilePage %}
+<div class="col-md-9 p-5">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-label-group">    
+        {{ user_form.username }}
+        <label for="username"><i class="far fa-user" aria-hidden="true"></i> Username</label>
+    </div>
+    <div class="form-label-group">    
+        {{ user_form.email }}
+        <label for="email"><i class="far fa-envelope" aria-hidden="true"></i> Email</label>
+    </div>
+    <span class="badge bg-warning text-dark rounded-pill m-2">Password field is disabled because password is hashed and secured.</span>
+    <div class="form-label-group">    
+        {{ user_form.password }}
+        <label for="password"><i class="fa fa-key" aria-hidden="true"></i> Password</label>
+    </div>
+    <div class="form-label-group">
+        {{ user_form.first_name }}
+        <label for="firstName"><i class="far fa-comment-alt" aria-hidden="true"></i> First Name</label>
+      </div>
+      <div class="form-label-group">
+        {{ user_form.last_name }}
+        <label for="lastName"><i class="far fa-comment-alt" aria-hidden="true"></i> Last Name</label>
+      </div>
+      <div class="form-label-group">
+        {{ profile_form.phone_number }}
+        <label for="phoneNumber"><i class="fas fa-phone"></i> Mobile Number</label>
+      </div>
+      <div class="text-center">
+        <img src="{{ user.userprofile.profile_picture.url }}" width="100">
+      </div>
+      <div class="form-label-group text-center mt-2">
+        {{ profile_form.profile_picture }}
+      </div>
+      <div class="form-label-group">
+        {{ profile_form.city }}
+        <label for="city"><i class="fas fa-city"></i> City</label>
+      </div>
+      <div class="form-label-group">
+        {{ profile_form.country }}
+        <label for="country"><i class="fas fa-globe"></i> Country</label>
+      </div>
+    <button class="bt btn btn-lg btn-warning btn-block text-uppercase rounded-pill" type="submit">Save changes</button>
+</form>
+</div>
+{% endblock %}
